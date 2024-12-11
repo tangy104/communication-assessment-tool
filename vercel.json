@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/analyze",
+      "destination": "http://15.207.223.131:8000/analyze"
+    }
+  ]
+}

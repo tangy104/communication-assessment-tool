@@ -49,7 +49,9 @@ const Homepage = () => {
 
       // Send FormData to the server
       const serverResponse = await axios.post(
-        "http://15.207.223.131:8000/analyze",
+        // "http://15.207.223.131:8000/analyze",
+        "/api/analyze",
+
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
