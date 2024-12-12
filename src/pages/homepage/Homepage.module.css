@@ -1,0 +1,243 @@
+/* General Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sofia&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Sofia&display=swap');
+
+:root {
+  --primary-color: #4a90e2;
+  --secondary-color: #f5f7fa;
+  --text-color: #333;
+  --light-text-color: #666;
+  --border-radius: 8px;
+  --transition: all 0.3s ease;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: var(--text-color);
+}
+
+/* Container */
+.container {
+  position: relative;
+  min-height: 94.8vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(to bottom left, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), 
+              url('../../assets/background.jpg') no-repeat center center / cover;
+  color: white;
+  
+}
+
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+ 
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 10px;
+  font-family: "Poppins", cursive;
+}
+
+.header p {
+  font-size: 1.2rem;
+  color: white;
+}
+
+.proceedButton {
+  padding: 12px 25px;
+  background-color: #981f9a;
+  color: #fff;
+  border: none;
+  border-radius: 22px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+/* Question Section */
+.questionSection {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.questionSection h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.questionCard {
+  background-color: var(--secondary-color);
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Recorder Section */
+.recorderSection {
+  margin-bottom: 30px;
+}
+
+.recorderContainer {
+  text-align: center;
+}
+
+.previewVideo,
+.recordedVideo {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.primaryButton,
+.secondaryButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.primaryButton {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.primaryButton:hover {
+  background-color: #357abd;
+}
+
+.secondaryButton {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+.secondaryButton:hover {
+  background-color: #e1e5ea;
+}
+
+/* Submit Section */
+.submitSection {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.submitButton {
+  padding: 12px 25px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.submitButton:hover {
+  background-color: #357abd;
+}
+
+.downloadLink {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.downloadLink:hover {
+  text-decoration: underline;
+}
+
+/* Result Section */
+.resultSection {
+  background-color: var(--secondary-color);
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.resultSection h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.resultButtons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.plotImage {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin: 20px auto;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .header p {
+    font-size: 1rem;
+  }
+
+  .questionSection h2,
+  .resultSection h2 {
+    font-size: 1.5rem;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
+
+  .submitButton {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+
+  .resultButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .resultButtons button {
+    width: 100%;
+    max-width: 300px;
+  }
+}

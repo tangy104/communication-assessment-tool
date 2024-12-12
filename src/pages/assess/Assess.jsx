@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useReactMediaRecorder } from "react-media-recorder";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { saveAs } from "file-saver";
 import Report from "../report/Report";
 // import Confetti from "react-confetti";
-import styles from "./Homepage.module.css";
-import backgroundImage from "../../assets/background.jpg"; 
+import styles from "./Assess.module.css"; 
 
 const Homepage = () => {
   const questions = [
@@ -27,8 +25,6 @@ const Homepage = () => {
     feedback:
       "Overall good communication. Focus on maintaining a steady pace and improving confidence.",
   };
-
-  const navigate = useNavigate();
 
   const [question, setQuestion] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -92,12 +88,85 @@ const Homepage = () => {
   return (
     <div className={styles.container}
     >
-      <header className={styles.header}>
-        <h1>Communication Assessment Tool</h1>
-        <p>Enhance your communication skills through AI-driven feedback.</p>
-      </header>
-      <div className={styles.proceedButton} onClick={()=>navigate("/assess")}>Dive Into Assessment</div>
-     
+
+      <section className={styles.questionSection}>
+        <div className={styles.questionCard}><h1>Question</h1>{question}</div>
+      </section>
+
+      <section className={styles.recorderSection}>
+        {/* <h2>Record Your Answer</h2> */}
+        <div className={styles.recorderContainer}>
+          {previewStream && !mediaBlobUrl && (
+            <video
+              className={styles.previewVideo}
+              ref={(ref) => ref && (ref.srcObject = previewStream)}
+              autoPlay
+              muted
+              playsInline
+            />
+          )}
+          {mediaBlobUrl && (
+            <video
+              className={styles.recordedVideo}
+              src={mediaBlobUrl}
+              controls
+            />
+          )}
+
+          <div className={styles.buttonGroup}>
+            
+            {mediaBlobUrl? (
+              <button
+                onClick={() => {
+                  stopRecording();
+                  clearBlobUrl();
+                  startRecording();
+                }}
+                className={styles.secondaryButton}
+              >
+                Re-record
+              </button>
+            ):(<button
+                onClick={status === "recording" ? stopRecording : startRecording}
+                className={
+                  status === "recording"
+                    ? styles.secondaryButton
+                    : styles.primaryButton
+                }
+              >
+                {status === "recording" ? "Stop Recording" : "Start Recording"}
+              </button>)}
+          </div>
+        </div>
+      </section>
+
+      {mediaBlobUrl && (
+        <section className={styles.submitSection}>
+          {isSubmitted && reportData ? (
+            <button
+              onClick={() => setShowReport(true)}
+              className={styles.secondaryButton}
+            >
+              Show Report
+            </button>
+          ) : (
+            <button
+              onClick={() => handleSubmit(mediaBlobUrl)}
+              className={styles.submitButton}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Submitting..." : "Submit for Analysis"}
+            </button>
+          )}
+          <a
+            href={mediaBlobUrl}
+            download="recording.mp4"
+            className={styles.downloadLink}
+          >
+            Download Recording
+          </a>
+        </section>
+      )}
 
       {/* {isSubmitted && report && (
         <section className={styles.resultSection}>
@@ -148,7 +217,14 @@ const Homepage = () => {
         </section>
       )} */}
       {/* {isSubmitted && reportData && <Report data={reportData} />} */}
-      
+      <div>
+        <Report
+          show={showReport}
+          data={dummyData}
+          onClose={() => setShowReport(false)}
+          clearBlobUrl={clearBlobUrl}
+        />
+      </div>
       {/* {showConfetti && <Confetti />} */}
     </div>
   );

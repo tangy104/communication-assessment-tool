@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import styles from "./SignUp.module.css";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({ username: "", password: "" });
@@ -14,41 +15,44 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(""); // Clear previous error
     try {
-      await axios.post("http://localhost:5000/auth/register", formData);
-      alert("Registration successful! You can now log in.");
+      const response = await axios.post("/api/signup", formData);
+      alert(response.data.message || "Registration successful! You can now log in.");
       navigate("/login");
     } catch (err) {
-      setError(err.response?.data || "An error occurred. Please try again.");
+      setError(err.response?.data?.detail || "An error occurred. Please try again.");
     }
   };
 
   return (
-    <div>
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username:</label>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Sign Up</h2>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <div className={styles.inputGroup}>
+          <label className={styles.label}>Username:</label>
           <input
             type="text"
             name="username"
             value={formData.username}
             onChange={handleChange}
+            className={styles.input}
             required
           />
         </div>
-        <div>
-          <label>Password:</label>
+        <div className={styles.inputGroup}>
+          <label className={styles.label}>Password:</label>
           <input
             type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
+            className={styles.input}
             required
           />
         </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <button type="submit">Sign Up</button>
+        {error && <p className={styles.error}>{error}</p>}
+        <button type="submit" className={styles.submitButton}>Sign Up</button>
       </form>
     </div>
   );

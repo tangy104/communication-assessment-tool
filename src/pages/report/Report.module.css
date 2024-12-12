@@ -1,0 +1,237 @@
+/* Modal styling */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    /* background: rgba(255, 255, 255, 0.1); Darker overlay */
+}
+
+/* Report styling */
+.report {
+    background: #1e1e2f;
+    /* Dark background */
+    color: #f1f1f1;
+    /* Light text */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    max-width: 800px;
+    width: 90%;
+    padding: 20px;
+    animation: fadeIn 0.3s ease, popIn 0.5s ease;
+    position: relative;
+}
+
+.report h2 {
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Pop-in animation */
+@keyframes popIn {
+    from {
+        transform: scale(0.8);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+/* Close button styling */
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff4747;
+    color: #1e1e2f;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.closeButton:hover {
+    transform: scale(1.1);
+    background: #ff2323;
+}
+
+/* Gradient bar for level */
+.gradientBar {
+    background: linear-gradient(to right, #ff5757, #ffa94d, #45b29d);
+    /* Red to Green */
+    border-radius: 8px;
+    height: 40px;
+    position: relative;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+/* Level text positioning */
+.level {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    font-weight: bold;
+    color: #f1f1f1;
+}
+
+/* Level marker positioning */
+.levelMarker {
+    position: absolute;
+    top: 0;
+    height: 40px;
+    width: 2px;
+    background: #333;
+    left: calc(var(--level) * 1%);
+}
+
+/* Arrow indicating level */
+.arrow {
+    position: absolute;
+    top: -12px;
+    left: -7px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 12px solid #333;
+}
+
+/* Content layout */
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Metrics and pros/cons styling */
+.metrics,
+.prosCons {
+    flex: 1 1 30%;
+    /* Adjusted width for better responsiveness */
+    background: #2e2e4f;
+    color: #f1f1f1;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+}
+
+/* Feedback box styling */
+.feedback {
+    margin-top: 20px;
+    background: #33334f;
+    color: #f1f1f1;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.feedback h3 {
+    margin-bottom: 10px;
+}
+
+/* Action buttons */
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Button styles */
+.downloadButton,
+.improveButton {
+    /* background: #45b29d; */
+    background: #981f9a;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 22px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.downloadButton:hover,
+.improveButton:hover {
+    /* background: #3a977e; */
+    background: #78047a;
+}
+
+/* Heading styles for metrics and prosCons */
+.metrics h3,
+.prosCons h3 {
+    margin-bottom: 10px;
+}
+
+/* List styles for metrics and prosCons */
+.metrics ul,
+.prosCons ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.metrics li,
+.prosCons li {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+        /* Stack sections vertically on smaller screens */
+    }
+
+    .metrics,
+    .prosCons {
+        flex: 1 1 100%;
+        /* Full width on small screens */
+    }
+
+    .report {
+        width: 95%;
+        /* Slightly reduce the width on smaller screens */
+        padding: 15px;
+        /* Reduce padding */
+    }
+
+    .gradientBar {
+        height: 30px;
+        /* Reduce height of the gradient bar */
+    }
+
+    .level {
+        font-size: 14px;
+        /* Adjust font size for better readability */
+    }
+}
