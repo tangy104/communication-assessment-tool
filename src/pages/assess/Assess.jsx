@@ -91,12 +91,17 @@ const Assess = () => {
     console.log("Form data hehe:", formData);
 
     try {
-      const airesponse = await axios.post("/api/analyze", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Accept: "application/json",
-        },
-      });
+      // const airesponse = await axios.post("/api/analyze", formData, {
+      const airesponse = await axios.post(
+        "http://13.233.194.6:8000/analyze",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Accept: "application/json",
+          },
+        }
+      );
 
       console.log("Response:", airesponse.data); // Debug: Ensure response is received
 
@@ -138,7 +143,8 @@ const Assess = () => {
     try {
       const response = await axios.post(
         // "http://localhost:8000/analyze",
-        "/api/analyze",
+        // "/api/analyze",
+        "http://13.233.194.6:8000/analyze",
         formData,
         {
           headers: {
