@@ -7,10 +7,11 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        // target: "http://15.207.223.131:8000",
-        target: "http://localhost:8000",
+        target: "http://13.233.194.6:8000",
+        // target: "http://localhost:8000",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
+        secure: false,
       },
     },
   },
