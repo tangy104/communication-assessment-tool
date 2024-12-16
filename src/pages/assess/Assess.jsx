@@ -145,6 +145,7 @@ const Assess = () => {
             "Content-Type": "multipart/form-data",
             Accept: "application/json",
           },
+          timeout: 180000,
         }
       );
       console.log("Upload response:", response.data);
@@ -158,6 +159,12 @@ const Assess = () => {
       // setShowReport(true);
     } catch (error) {
       console.error("Error uploading video:", error);
+      if (error.response) {
+        console.error("Response data:", error.response.data);
+        console.error("Response status:", error.response.status);
+        console.error("Response headers:", error.response.headers);
+      }
+
       setUploadStatus(
         `Upload failed: ${error.response?.data || error.message}`
       );
